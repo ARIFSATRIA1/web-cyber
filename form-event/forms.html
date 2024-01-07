@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/feather-icons"></script>
+
+    <link rel="stylesheet" href="../css/style.css" />
+    <!--Fonts Style -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&family=Roboto:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Font Style End-->
+    <link rel="icon" href="../img/Logo Kecil.png" />
+    <title>CSC FIKTI</title>
+  </head>
+  <body>
+    <div class="header">
+      <!-- Navigation Bar Start -->
+
+      <nav class="navbar">
+        <img class="navbar-logo" src="../img/Logo Kecil.png" alt="Logokecil" />
+        <div class="navbar-nav">
+          <a href="../index.html">Home</a>
+          <a href="../index.html#about">About us</a>
+          <a href="../event/event.html">Event</a>
+          <a href="#article">Article</a>
+          <a href="../division/division.html">Division</a>
+        </div>
+        <div class="navbar-transparent">
+          <a href="#" id="hamburger-menu"> <i data-feather="menu"></i> </a>
+        </div>
+      </nav>
+      <!-- Navigation Bar End-->
+
+      <!-- Event Section Start -->
+
+      <section class="recruit" id="event">
+        <h2 class="h2form">Form Pendaftaran</h2>
+        <div class="container">
+          <div class="alert display-none">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+            <strong> Success </strong>Anda Berhasil Mendaftar, Tunggu Informasi Selanjutnya Dari Kami
+          </div>
+          <form name="form-pendaftaran">
+            <h4 class="padding-bots">Isikan data dengan lengkap</h4>
+            <fieldset>
+              <input
+                placeholder="Nama"
+                type="text"
+                tabindex="1"
+                required
+                autofocus
+                name="nama"
+              />
+            </fieldset>
+            <fieldset>
+              <input
+                placeholder="No Phone"
+                type="tel"
+                tabindex="2"
+                required
+                name="phone"
+              />
+            </fieldset>
+            <fieldset>
+              <input
+                placeholder="NPM"
+                type="text"
+                tabindex="3"
+                required
+                name="npm"
+              />
+            </fieldset>
+            <fieldset>
+              <input
+                placeholder="Jurusan"
+                type="text"
+                tabindex="4"
+                required
+                name="jurusan"
+              />
+            </fieldset>
+            <fieldset>
+              <textarea
+                class="pesan-area"
+                placeholder="Alasan Ingin Bergabung"
+                tabindex="8"
+                required
+                name="pesan"
+              ></textarea>
+            </fieldset>
+            <fieldset>
+              <button
+                name="submit"
+                type="submit"
+                id="contact-submit"
+                data-submit="...Sending"
+                class="buttonSend"
+              >
+                Submit
+              </button>
+              <button class="buttonload display-none" name="btnLoading">
+                <i class="fa fa-spinner fa-spin"></i>Loading
+              </button>
+            </fieldset>
+          </form>
+        </div>
+      </section>
+
+      <!-- Event Section End -->
+
+      <!-- Footer Start -->
+      <footer>
+        <div class="footerrow">
+          <div class="instansi">
+            <h1 class="namainstansi">CSC FIKTI <span>UMSU</span></h1>
+          </div>
+
+          <div class="links">
+            <a href="../index.html">Home</a>
+            <a href="../index.html#about">About us</a>
+            <a href="../event/event.html">Event</a>
+            <a href="#article">Article</a>
+            <a href="../division/division.html">Division</a>
+          </div>
+
+          <div class="sekretariat">
+            <h1>Sekretariat</h1>
+            <p>
+              Cyber Security Community FIKTI UMSU JL. Kapten Muchtar Basri No.3
+              Medan Sumatera Utara 20238 info@cyberfikti.com
+            </p>
+
+            <div class="credit">
+              <p class="p1">
+                © All rights reserved - 2023 | Create by Cyber Security
+                Community FIKTI UMSU
+              </p>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+      <!-- Footer End-->
+    </div>
+
+    <!--Feather icons -->
+    <script>
+      feather.replace();
+    </script>
+
+    <!-- JavaScript -->
+
+    <script src="../js/script.js"></script>
+
+    <script>
+      const scriptURL =
+        "https://script.google.com/macros/s/AKfycbxzJCUV3qQX3uZe5Mwk8dI6-nfZPItqovaGXXYCrVLk-uqpVfNBiijY1ggXSJ47umpdzA/exec";
+      const form = document.forms["form-pendaftaran"];
+      const btnSend = document.querySelector('.buttonSend');
+      const btnLoad = document.querySelector('.buttonload');
+      const alert = document.querySelector('.alert');
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        btnLoad.classList.toggle('display-none');
+        btnSend.classList.toggle('display-none');
+        fetch(scriptURL, { method: "POST", body: new FormData(form) })
+          .then((response) =>  {
+            btnLoad.classList.toggle('display-none');
+            btnSend.classList.toggle('display-none');
+            alert.classList.toggle('display-none');
+            form.reset();
+            console.log("Success!", response)
+          })
+          .catch((error) => console.error("Error!", error.message));
+      });
+    </script>
+
+    <!-- Java Script End-->
+  </body>
+</html>
